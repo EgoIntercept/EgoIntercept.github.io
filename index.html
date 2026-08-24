@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EgoIntercept: Egocentric Object Interception with a Quadruped Robot</title>
+<meta name="description" content="EgoIntercept formulates dynamic ball catching as egocentric interception: a quadruped intercepts thrown objects entirely in its own moving frame using only onboard RGB-D sensing. 91.6% success in simulation, zero-shot transfer to a Unitree Go2.">
+<meta name="keywords" content="legged robots, object catching, interception, reinforcement learning, sim-to-real, egocentric perception">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="EgoIntercept: Egocentric Object Interception with a Quadruped Robot">
+<meta property="og:description" content="A Unitree Go2 catches thrown objects using only onboard RGB-D sensing. Zero-shot sim-to-real.">
+<meta property="og:image" content="https://EgoIntercept.github.io/static/img/posters/hero-reel.jpg">
+<meta property="og:url" content="https://EgoIntercept.github.io/">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23fff'/%3E%3Cpath d='M4 24C9 8 21 6 28 14' stroke='%23363636' stroke-width='2.2' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='26' cy='22' r='4' fill='%23363636'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+
+<!-- ======================= TITLE ======================= -->
+<div class="hero">
+  <div class="container">
+    <h1 class="publication-title">EgoIntercept: Egocentric Object Interception<br>with a Quadruped Robot</h1>
+
+    <!-- TODO: replace with the real author list, affiliations and links before release. -->
+    <div class="publication-authors">Anonymous Authors</div>
+    <div class="publication-venue">Under review, 2026</div>
+
+    <div class="publication-links">
+      <!-- Paper is not public yet. When it is, make this an <a href="..."> again. -->
+      <span class="link-block off">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+        Paper (coming soon)
+      </span>
+      <a class="link-block" href="#video">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10 8 6 4-6 4V8z"/><rect x="2" y="4" width="20" height="16" rx="3"/></svg>
+        Video
+      </a>
+      <!-- arXiv: swap this for a real <a class="link-block" href="..."> when posted. -->
+      <span class="link-block off">arXiv (coming soon)</span>
+      <span class="link-block off">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg>
+        Code (coming soon)
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= TEASER ======================= -->
+<section style="padding-top:14px">
+  <div class="container">
+    <figure style="margin-top:0">
+      <video src="static/vids/hero-reel.mp4" poster="static/img/posters/hero-reel.jpg"
+             autoplay muted loop playsinline preload="metadata"
+             style="width:100%;border-radius:5px;border:1px solid var(--line);background:#eee"></video>
+      <figcaption><b>Egocentric interception for dynamic ball catching.</b> A Unitree Go2 runs down thrown objects and intercepts them on its front-mounted catching surface, using only its onboard RGB-D camera.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ======================= ABSTRACT ======================= -->
+<section id="abstract">
+  <div class="container">
+    <h2 class="section-title">Abstract</h2>
+    <div class="narrow justify">
+      <p>Catching a flying object with a legged robot requires tight coordination between perception and locomotion under strict time constraints. Many existing robotic systems estimate object trajectories in a fixed external frame and then plan interception motions, treating robot motion as a disturbance to be compensated for. We instead formulate catching as <b>egocentric interception</b>, a control strategy that operates in the robot's moving frame without requiring a stable world frame from SLAM or external sensing infrastructure.</p>
+      <p>We present a unified visuomotor framework that jointly optimizes interception success and egocentric prediction accuracy of object motion from onboard observations, enabling emergent leg–eye coordination. The policy is trained in simulation using a calibrated sensor model that captures latency, depth error, and motion-dependent detection noise. Our method achieves ~90% success in simulation, outperforming a baseline policy trained with decoupled teacher–student distillation. The learned policy is validated zero-shot on a real Unitree Go2 quadruped with onboard RGB-D sensing, demonstrating robust legged interception.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= VIDEO ======================= -->
+<section id="video">
+  <div class="container">
+    <h2 class="section-title">Video</h2>
+    <!-- The player is injected by static/js/main.js.
+         Set YOUTUBE_ID near the top of that file to go live. -->
+    <div class="yt" id="yt">
+      <div class="pending">
+        <div>
+          <strong>Coming soon</strong>
+          <!-- To publish: set YOUTUBE_ID at the top of static/js/main.js -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= METHOD ======================= -->
+<section id="method">
+  <div class="container">
+    <h2 class="section-title">Method</h2>
+    <p class="section-lede">Standing still improves trajectory prediction but limits reach; sprinting expands reach but destroys perception. EgoIntercept optimizes both together.</p>
+
+    <figure>
+      <img src="static/img/figs/framework.jpg" alt="EgoIntercept framework during training and deployment.">
+      <figcaption><b>EgoIntercept framework during training and deployment.</b> During training (top), ground-truth object states pass through a calibrated sensor model (FOV limits, latency, detection error, depth noise) to produce realistic egocentric observations. A recurrent predictor network regresses object position, velocity, and time-to-crossing from these observations. The predictor's output is concatenated with the observation history and given to the actor, and the prediction error defines a dense prediction reward to accelerate learning. At deployment (bottom), the calibrated sensor model is replaced by the real object detection pipeline, while the predictor and policy run unchanged, enabling zero-shot transfer.</figcaption>
+    </figure>
+
+    <figure>
+      <img src="static/img/figs/hardware.jpg" alt="Hardware embodiment and simulation model.">
+      <figcaption><b>Hardware and simulation model.</b> The real Unitree Go2 is equipped with an onboard stereo camera and a front-mounted velcro catching surface. Right: the corresponding collision geometry used during policy training.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ======================= REAL-WORLD VIDS ======================= -->
+<section id="real-world">
+  <div class="container">
+    <h2 class="section-title">Real-World Catches</h2>
+    <p class="section-lede">Objects are thrown from ~3&ndash;3.5 m with 0.85&ndash;1.75 s flight times. Every clip shows the policy running zero-shot from simulation, with all sensing onboard.</p>
+    <div class="vgrid" id="grid-catches"></div>
+  </div>
+</section>
+
+<!-- ======================= ONBOARD ======================= -->
+<section id="onboard">
+  <div class="container">
+    <h2 class="section-title">Onboard Perception</h2>
+    <p class="section-lede">Onboard RGB (left), aligned depth (center), and a third-person reference view (right). The policy only ever sees the first two.</p>
+    <div class="vgrid one" id="grid-onboard"></div>
+  </div>
+</section>
+
+<!-- ======================= SIMULATION ======================= -->
+<section id="simulation">
+  <div class="container">
+    <h2 class="section-title">Simulation</h2>
+    <p class="section-lede">Policies are trained with PPO and an asymmetric actor&ndash;critic in a massively parallel Legged Gym environment, on randomized rough terrain.</p>
+
+    <!-- Drop clips into static/vids/sim/ and list them in the SIMS array in static/js/main.js -->
+    <div class="vgrid" id="grid-sim"></div>
+
+  </div>
+</section>
+
+<!-- ======================= FAILURES ======================= -->
+<section id="failures">
+  <div class="container">
+    <h2 class="section-title">Failure Cases</h2>
+    <p class="section-lede">Failures occur under extreme conditions: throws near the edge of the 55.5°&nbsp;×&nbsp;43.1° field of view, prolonged detection dropout from inconsistent lighting, or highly vertical trajectories that rapidly exit the observable region.</p>
+
+    <!-- Drop clips into static/vids/failures/ and list them in the FAILURES array in static/js/main.js -->
+    <div class="vgrid" id="grid-failures"></div>
+  </div>
+</section>
+
+<!-- ======================= BIBTEX ======================= -->
+<section id="bibtex">
+  <div class="container">
+    <h2 class="section-title">BibTeX</h2>
+    <div class="bib">
+      <button class="copy" id="copy-bib">Copy</button>
+<pre><code id="bib-code">@article{egointercept2026,
+  title   = {EgoIntercept: Egocentric Object Interception with a Quadruped Robot},
+  author  = {Anonymous Authors},
+  journal = {Under review},
+  year    = {2026},
+  url     = {https://EgoIntercept.github.io}
+}</code></pre>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    EgoIntercept
+  </div>
+</footer>
+
+<script src="static/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+/* EgoIntercept — project page
+   Layout follows the familiar academic project-page template
+   (Nerfies / Robot Parkour Learning lineage). */
+
+:root{
+  --fg:#363636;
+  --fg-dim:#6b7280;
+  --link:#3273dc;
+  --line:#dbdbdb;
+  --soft:#f5f5f5;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:#fff;color:var(--fg);
+  font-family:"Noto Sans","Google Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;
+}
+img,video{max-width:100%;display:block}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.container{max-width:1000px;margin-inline:auto;padding-inline:24px}
+.narrow{max-width:820px;margin-inline:auto}
+.center{text-align:center}
+.justify{text-align:justify}
+
+/* ---------- hero ---------- */
+.hero{padding:52px 0 20px;text-align:center}
+.publication-title{
+  font-size:clamp(1.8rem,4.4vw,2.6rem);font-weight:700;line-height:1.28;
+  margin:0 0 18px;letter-spacing:-.01em;color:#222;
+}
+.publication-authors{font-size:1.2rem;margin-bottom:6px}
+.publication-venue{font-size:1.05rem;color:var(--fg-dim);margin-bottom:22px}
+
+.publication-links{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.link-block{
+  display:inline-flex;align-items:center;gap:8px;
+  background:#363636;color:#fff;border:1px solid #363636;
+  border-radius:999px;padding:9px 18px;font-size:.95rem;
+}
+.link-block:hover{background:#4a4a4a;color:#fff;text-decoration:none}
+.link-block.off{background:#fff;color:#9aa0aa;border-color:var(--line);cursor:default}
+.link-block svg{width:16px;height:16px;flex:none}
+
+/* ---------- sections ---------- */
+section{padding:30px 0}
+.section-title{
+  font-size:1.7rem;font-weight:700;color:#222;text-align:center;margin:0 0 22px;
+}
+.section-lede{color:var(--fg-dim);text-align:center;max-width:70ch;margin:-12px auto 24px}
+h3{font-size:1.1rem;font-weight:700;margin:26px 0 10px}
+p{margin:0 0 1em}
+hr{border:0;border-top:1px solid var(--line);margin:0}
+
+/* ---------- figures ---------- */
+figure{margin:22px 0}
+figcaption{font-size:.92rem;color:var(--fg-dim);line-height:1.55;margin-top:10px;text-align:justify}
+figcaption b{color:var(--fg)}
+.fig-2{display:grid;gap:24px;grid-template-columns:1fr 1fr}
+@media(max-width:800px){.fig-2{grid-template-columns:1fr}}
+.fig-row{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap}
+.fig-row .col{flex:1 1 180px;max-width:240px;text-align:center}
+.fig-row .col .lbl{font-size:.85rem;color:var(--fg-dim);margin-top:5px}
+
+/* ---------- video grids ---------- */
+.vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:900px){.vgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.vgrid{grid-template-columns:1fr}}
+.vgrid.one{grid-template-columns:1fr}
+
+.vitem video,.vitem img.ph{width:100%;border-radius:5px;background:#eee;border:1px solid var(--line)}
+.vitem .cap{font-size:.9rem;color:var(--fg-dim);margin-top:7px;line-height:1.45;text-align:center}
+.vitem .cap b{color:var(--fg);font-weight:600}
+
+.soon{
+  border:1px dashed var(--line);border-radius:5px;background:var(--soft);
+  aspect-ratio:16/9;display:grid;place-items:center;text-align:center;
+  color:#9aa0aa;font-size:.92rem;padding:16px;
+}
+
+/* ---------- youtube ---------- */
+.yt{position:relative;aspect-ratio:16/9;border-radius:6px;overflow:hidden;background:var(--soft);border:1px solid var(--line)}
+.yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.yt .facade{position:absolute;inset:0;display:grid;place-items:center;cursor:pointer}
+.yt .facade img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.yt .facade .play{position:relative;width:66px;height:66px;border-radius:50%;display:grid;place-items:center;background:rgba(0,0,0,.72)}
+.yt .facade .play svg{width:24px;height:24px;margin-left:3px;fill:#fff}
+.yt .pending{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:24px;color:var(--fg-dim)}
+.yt .pending strong{display:block;color:var(--fg);font-size:1.1rem;margin-bottom:8px}
+.yt .pending p{margin:0;font-size:.92rem;max-width:48ch}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em;background:#eef0f3;padding:1px 5px;border-radius:3px}
+
+/* ---------- tables ---------- */
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.92rem;min-width:520px}
+th,td{padding:8px 12px;text-align:right;border-bottom:1px solid var(--line)}
+th:first-child,td:first-child{text-align:left}
+thead th{font-weight:700;border-bottom:1.5px solid #b5b5b5;color:#222}
+tbody tr.ours td{font-weight:700;color:#222}
+tr.grp th{text-align:left;font-weight:700;color:var(--fg-dim);background:var(--soft);font-size:.86rem}
+.tbl-cap{font-size:.9rem;color:var(--fg-dim);margin-top:10px;text-align:justify}
+
+/* ---------- bibtex ---------- */
+.bib{position:relative;background:var(--soft);border-radius:6px}
+.bib pre{margin:0;padding:18px;overflow-x:auto;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.85rem;line-height:1.7}
+.bib .copy{position:absolute;top:10px;right:10px;font-size:.8rem;padding:5px 11px;border-radius:5px;
+  border:1px solid var(--line);background:#fff;color:var(--fg-dim);cursor:pointer}
+.bib .copy:hover{color:var(--fg)}
+
+/* ---------- misc ---------- */
+.note{background:var(--soft);border-radius:6px;padding:18px 20px;font-size:.95rem;color:var(--fg-dim)}
+.note b{color:var(--fg)}
+footer{border-top:1px solid var(--line);margin-top:26px;padding:24px 0 46px;font-size:.88rem;color:var(--fg-dim);text-align:center}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}

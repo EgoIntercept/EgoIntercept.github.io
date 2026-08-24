@@ -1,0 +1,9 @@
+.DS_Store
+
+# Raw source material — capture originals, the PDF source, extracted figure
+# scratch. Far too large for git (several .mov files exceed GitHub's 100 MB
+# limit). Everything the site actually serves lives in static/.
+media/
+
+# Paper is not public yet.
+static/EgoIntercept.pdf
