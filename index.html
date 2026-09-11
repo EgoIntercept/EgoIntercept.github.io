@@ -101,11 +101,6 @@
       <img src="static/img/figs/framework.jpg" alt="EgoIntercept framework during training and deployment.">
       <figcaption><b>EgoIntercept framework during training and deployment.</b> During training (top), ground-truth object states pass through a calibrated sensor model (FOV limits, latency, detection error, depth noise) to produce realistic egocentric observations. A recurrent predictor network regresses object position, velocity, and time-to-crossing from these observations. The predictor's output is concatenated with the observation history and given to the actor, and the prediction error defines a dense prediction reward to accelerate learning. At deployment (bottom), the calibrated sensor model is replaced by the real object detection pipeline, while the predictor and policy run unchanged, enabling zero-shot transfer.</figcaption>
     </figure>
-
-    <figure>
-      <img src="static/img/figs/hardware.jpg" alt="Hardware embodiment and simulation model.">
-      <figcaption><b>Hardware and simulation model.</b> The real Unitree Go2 is equipped with an onboard stereo camera and a front-mounted velcro catching surface. Right: the corresponding collision geometry used during policy training.</figcaption>
-    </figure>
   </div>
 </section>
 
@@ -113,7 +108,7 @@
 <section id="real-world">
   <div class="container">
     <h2 class="section-title">Real-World Catches</h2>
-    <p class="section-lede">Objects are thrown from ~3&ndash;3.5 m with 0.85&ndash;1.75 s flight times. Every clip shows the policy running zero-shot from simulation, with all sensing onboard.</p>
+    <p class="section-lede">Objects are thrown from ~3&ndash;3.5 m with 0.85&ndash;1.5 s flight times. Every clip shows the policy running zero-shot from simulation, with all sensing onboard.</p>
     <div class="vgrid" id="grid-catches"></div>
   </div>
 </section>
