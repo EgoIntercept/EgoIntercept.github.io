@@ -102,9 +102,11 @@ figcaption b{color:var(--fg)}
   color:#9aa0aa;font-size:.92rem;padding:16px;
 }
 
-/* ---------- youtube ---------- */
+/* ---------- overview video ---------- */
 .yt{position:relative;aspect-ratio:16/9;border-radius:6px;overflow:hidden;background:var(--soft);border:1px solid var(--line)}
-.yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.yt iframe,.yt video{position:absolute;inset:0;width:100%;height:100%;border:0}
+.yt video{display:block;object-fit:contain;background:#000}
+.vid-note{margin-top:12px}
 .yt .facade{position:absolute;inset:0;display:grid;place-items:center;cursor:pointer}
 .yt .facade img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .yt .facade .play{position:relative;width:66px;height:66px;border-radius:50%;display:grid;place-items:center;background:rgba(0,0,0,.72)}

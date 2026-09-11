@@ -53,17 +53,16 @@
 
 <!-- ======================= OVERVIEW VIDEO ======================= -->
 <!-- No heading by design: this is the first thing on the page.
-     Set YOUTUBE_ID at the top of static/js/main.js to go live. -->
+     Self-hosted supplementary video, played back at 2x the original speed.
+     Re-encode from the raw capture with tools/make-overview.sh. -->
 <section id="video" style="padding-top:14px">
   <div class="container">
-    <div class="yt" id="yt">
-      <div class="pending">
-        <div>
-          <strong>Project overview video</strong>
-          <p>Coming soon.</p>
-        </div>
-      </div>
+    <div class="yt">
+      <video id="overview" controls playsinline preload="none"
+             poster="static/img/posters/overview-2x.jpg"
+             src="static/vids/overview-2x.mp4"></video>
     </div>
+    <p class="section-lede vid-note">Supplementary video &middot; played at <b>2&times;</b> the recorded speed.</p>
   </div>
 </section>
 

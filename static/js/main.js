@@ -9,12 +9,6 @@
        static/img/posters/<same filename>.jpg
    ========================================================================== */
 
-/* ---- YouTube -------------------------------------------------------------
-   Paste the 11-character video ID here once the video is up, e.g.
-       const YOUTUBE_ID = "dQw4w9WgXcQ";
-   Leave it "" and the page shows a "coming soon" panel instead.            */
-const YOUTUBE_ID = "";
-
 /* ---- Real-world catches, slow motion ------------------------------------
    Shot at 240 fps and retimed to 30 fps, i.e. 0.125x real time.
    Shown one per row, full width. Filenames carry a -slowmo suffix.        */
@@ -121,27 +115,6 @@ function start(v) {
   });
 }
 
-function initYouTube() {
-  const host = document.getElementById("yt");
-  if (!host || !YOUTUBE_ID) return;
-  host.innerHTML = `
-    <div class="facade" role="button" tabindex="0" aria-label="Play the overview video">
-      <img src="https://i.ytimg.com/vi/${YOUTUBE_ID}/maxresdefault.jpg" alt="">
-      <div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-    </div>`;
-  const load = () => {
-    host.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${YOUTUBE_ID}?autoplay=1&rel=0"
-      title="EgoIntercept overview video"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen></iframe>`;
-  };
-  const f = host.querySelector(".facade");
-  f.addEventListener("click", load);
-  f.addEventListener("keydown", e => {
-    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); load(); }
-  });
-}
-
 function initCopy() {
   const btn = document.getElementById("copy-bib");
   if (!btn) return;
@@ -161,6 +134,5 @@ document.addEventListener("DOMContentLoaded", () => {
   fill("grid-sim",      SIMS,     "Simulation rollouts");
   fill("grid-failures", FAILURES, "Failure cases");
   lazyPlay();
-  initYouTube();
   initCopy();
 });
