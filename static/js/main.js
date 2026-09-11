@@ -15,20 +15,27 @@
    Leave it "" and the page shows a "coming soon" panel instead.            */
 const YOUTUBE_ID = "";
 
-/* ---- Real-world catches -------------------------------------------------- */
+/* ---- Real-world catches, slow motion ------------------------------------
+   Shot at 240 fps and retimed to 30 fps, i.e. 0.125x real time.
+   Shown one per row, full width. Filenames carry a -slowmo suffix.        */
+const SLOWMO = [
+  { file:"static/vids/catch-forward-01-slowmo.mp4",     cap:"<b>Forward</b> &middot; 0.125&times; real time" },
+  { file:"static/vids/catch-front-left-01-slowmo.mp4",  cap:"<b>Front-left</b> &middot; 0.125&times; real time" },
+  { file:"static/vids/catch-front-right-01-slowmo.mp4", cap:"<b>Front-right</b> &middot; 0.125&times; real time" },
+  { file:"static/vids/catch-back-01-slowmo.mp4",        cap:"<b>Back</b> &middot; 0.125&times; real time" },
+  { file:"static/vids/catch-back-02-slowmo.mp4",        cap:"<b>Back</b> &middot; 0.125&times; real time" },
+  { file:"static/vids/catch-back-right-01-slowmo.mp4",  cap:"<b>Back-right</b> &middot; 0.125&times; real time" },
+  { file:"static/vids/catch-near-03-slowmo.mp4",        cap:"<b>Near</b> &middot; 0.125&times; real time" },
+];
+
+/* ---- Real-world catches, full speed -------------------------------------
+   Shown two per row.                                                       */
 const CATCHES = [
-  { file:"static/vids/catch-forward-01.mp4",     cap:"<b>Forward</b>" },
   { file:"static/vids/catch-forward-02.mp4",     cap:"<b>Forward</b>" },
   { file:"static/vids/catch-forward-03.mp4",     cap:"<b>Forward</b>" },
-  { file:"static/vids/catch-front-left-01.mp4",  cap:"<b>Front-left</b>" },
   { file:"static/vids/catch-left-01.mp4",        cap:"<b>Left</b>" },
-  { file:"static/vids/catch-front-right-01.mp4", cap:"<b>Front-right</b>" },
   { file:"static/vids/catch-near-01.mp4",        cap:"<b>Near</b>" },
   { file:"static/vids/catch-near-02.mp4",        cap:"<b>Near</b>" },
-  { file:"static/vids/catch-near-03.mp4",        cap:"<b>Near</b> &middot; extended sequence" },
-  { file:"static/vids/catch-back-01.mp4",        cap:"<b>Back</b>" },
-  { file:"static/vids/catch-back-02.mp4",        cap:"<b>Back</b>" },
-  { file:"static/vids/catch-back-right-01.mp4",  cap:"<b>Back-right</b>" },
 ];
 
 /* ---- Onboard perception (RGB | depth | third-person) --------------------- */
@@ -67,7 +74,7 @@ function fill(id, list, placeholder) {
   }
   grid.innerHTML = list.map(v => `
     <div class="vitem">
-      <video muted loop playsinline preload="none"
+      <video muted loop playsinline controls controlslist="nodownload" preload="none"
              poster="${posterFor(v.file)}" data-src="${v.file}"></video>
       <div class="cap">${v.cap}</div>
     </div>`).join("");
@@ -79,14 +86,39 @@ function lazyPlay() {
     entries.forEach(e => {
       const v = e.target;
       if (e.isIntersecting) {
+        v.dataset.vis = "1";
         if (!v.src) v.src = v.dataset.src;
-        v.play().catch(() => {});
+        if (!v.dataset.held) start(v);
       } else {
-        v.pause();
+        delete v.dataset.vis;
+        if (!v.paused) {
+          v.dataset.auto = "1";   /* not the viewer pausing — do not remember it */
+          v.pause();
+        }
       }
     });
   }, { rootMargin: "200px 0px", threshold: 0.2 });
-  document.querySelectorAll("video[data-src]").forEach(v => io.observe(v));
+
+  document.querySelectorAll("video[data-src]").forEach(v => {
+    /* A pause the viewer asked for sticks: scrolling past will not restart it.
+       Pauses we trigger when a clip leaves the viewport are marked first. */
+    v.addEventListener("pause", () => {
+      if (v.dataset.auto) delete v.dataset.auto;
+      else if (!v.ended) v.dataset.held = "1";
+    });
+    v.addEventListener("play", () => { delete v.dataset.held; });
+    io.observe(v);
+  });
+}
+
+/* Setting src and calling play() in the same tick makes Chrome abort the
+   request, leaving the clip stuck on its poster. Retry once it has data. */
+function start(v) {
+  v.play().catch(() => {
+    v.addEventListener("canplay", () => {
+      if (v.dataset.vis && !v.dataset.held) v.play().catch(() => {});
+    }, { once: true });
+  });
 }
 
 function initYouTube() {
@@ -123,6 +155,7 @@ function initCopy() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  fill("grid-slowmo",   SLOWMO);
   fill("grid-catches",  CATCHES);
   fill("grid-onboard",  ONBOARD);
   fill("grid-sim",      SIMS,     "Simulation rollouts");

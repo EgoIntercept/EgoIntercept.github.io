@@ -25,7 +25,7 @@
 <!-- ======================= TITLE ======================= -->
 <div class="hero">
   <div class="container">
-    <h1 class="publication-title">EgoIntercept: Egocentric Object Interception<br>with a Quadruped Robot</h1>
+    <h1 class="publication-title"><span class="name">EgoIntercept:</span> Egocentric Object Interception<br>with a Quadruped Robot</h1>
 
     <!-- TODO: replace with the real author list, affiliations and links before release. -->
     <div class="publication-authors">Anonymous Authors</div>
@@ -51,15 +51,19 @@
   </div>
 </div>
 
-<!-- ======================= TEASER ======================= -->
-<section style="padding-top:14px">
+<!-- ======================= OVERVIEW VIDEO ======================= -->
+<!-- No heading by design: this is the first thing on the page.
+     Set YOUTUBE_ID at the top of static/js/main.js to go live. -->
+<section id="video" style="padding-top:14px">
   <div class="container">
-    <figure style="margin-top:0">
-      <video src="static/vids/hero-reel.mp4" poster="static/img/posters/hero-reel.jpg"
-             autoplay muted loop playsinline preload="metadata"
-             style="width:100%;border-radius:5px;border:1px solid var(--line);background:#eee"></video>
-      <figcaption><b>Egocentric interception for dynamic ball catching.</b> A Unitree Go2 runs down thrown objects and intercepts them on its front-mounted catching surface, using only its onboard RGB-D camera.</figcaption>
-    </figure>
+    <div class="yt" id="yt">
+      <div class="pending">
+        <div>
+          <strong>Project overview video</strong>
+          <p>Coming soon.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -74,20 +78,15 @@
   </div>
 </section>
 
-<!-- ======================= VIDEO ======================= -->
-<section id="video">
+<!-- ======================= REAL-WORLD CATCHES ======================= -->
+<section id="real-world">
   <div class="container">
-    <h2 class="section-title">Video</h2>
-    <!-- The player is injected by static/js/main.js.
-         Set YOUTUBE_ID near the top of that file to go live. -->
-    <div class="yt" id="yt">
-      <div class="pending">
-        <div>
-          <strong>Coming soon</strong>
-          <!-- To publish: set YOUTUBE_ID at the top of static/js/main.js -->
-        </div>
-      </div>
-    </div>
+    <h2 class="section-title">Real-World Catches</h2>
+    <p class="section-lede">Objects are thrown from ~3&ndash;3.5 m with 0.85&ndash;1.5 s flight times. Every clip shows the policy running zero-shot from simulation, with all sensing onboard. The slow-motion clips were shot at 240&nbsp;fps and play at <b>0.125&times; real time</b>; the rest are full speed.</p>
+    <!-- Slow-motion clips: one per row, full width. -->
+    <div class="vgrid one" id="grid-slowmo"></div>
+    <!-- Full-speed clips: two per row. -->
+    <div class="vgrid two" id="grid-catches"></div>
   </div>
 </section>
 
@@ -95,21 +94,11 @@
 <section id="method">
   <div class="container">
     <h2 class="section-title">Method</h2>
-    <p class="section-lede">Standing still improves trajectory prediction but limits reach; sprinting expands reach but destroys perception. EgoIntercept optimizes both together.</p>
-
     <figure>
-      <img src="static/img/figs/framework.jpg" alt="EgoIntercept framework during training and deployment.">
+      <img src="static/img/figs/framework.jpg" alt="EgoIntercept framework during training and deployment."
+           width="1900" height="988" loading="lazy" decoding="async">
       <figcaption><b>EgoIntercept framework during training and deployment.</b> During training (top), ground-truth object states pass through a calibrated sensor model (FOV limits, latency, detection error, depth noise) to produce realistic egocentric observations. A recurrent predictor network regresses object position, velocity, and time-to-crossing from these observations. The predictor's output is concatenated with the observation history and given to the actor, and the prediction error defines a dense prediction reward to accelerate learning. At deployment (bottom), the calibrated sensor model is replaced by the real object detection pipeline, while the predictor and policy run unchanged, enabling zero-shot transfer.</figcaption>
     </figure>
-  </div>
-</section>
-
-<!-- ======================= REAL-WORLD VIDS ======================= -->
-<section id="real-world">
-  <div class="container">
-    <h2 class="section-title">Real-World Catches</h2>
-    <p class="section-lede">Objects are thrown from ~3&ndash;3.5 m with 0.85&ndash;1.5 s flight times. Every clip shows the policy running zero-shot from simulation, with all sensing onboard.</p>
-    <div class="vgrid" id="grid-catches"></div>
   </div>
 </section>
 
@@ -126,7 +115,7 @@
 <section id="simulation">
   <div class="container">
     <h2 class="section-title">Simulation</h2>
-    <p class="section-lede">Policies are trained with PPO and an asymmetric actor&ndash;critic in a massively parallel Legged Gym environment, on randomized rough terrain.</p>
+    <p class="section-lede">Policies are trained with PPO and an asymmetric actor&ndash;critic in a massively parallel Legged Gym environment.</p>
 
     <!-- Drop clips into static/vids/sim/ and list them in the SIMS array in static/js/main.js -->
     <div class="vgrid" id="grid-sim"></div>
@@ -164,7 +153,9 @@
 
 <footer>
   <div class="container">
-    EgoIntercept
+    <p>Page template adapted from <a href="https://mobile-dex-catch.github.io/">mobile-dex-catch.github.io</a>
+       and <a href="https://nerfies.github.io/">nerfies.github.io</a>.</p>
+    <p>EgoIntercept</p>
   </div>
 </footer>
 

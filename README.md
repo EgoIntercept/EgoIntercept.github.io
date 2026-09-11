@@ -67,6 +67,10 @@ Clips load and play only while they are on screen, so the page stays light.
 - `static/vids/hero-reel.mp4` is the 12 catch clips concatenated (stream copy, no
   re-encode). Regenerate it with `ffmpeg -f concat -safe 0 -i list.txt -c copy
   -movflags +faststart hero-reel.mp4`.
+- Catch clips ending in `-slowmo` were shot at 240 fps and are already retimed to
+  30 fps, i.e. 0.125x real time. They render one per row; the full-speed clips
+  (23.976 fps) render two per row. The split lives in the `SLOWMO` and `CATCHES`
+  arrays in `static/js/main.js`.
 - `static/img/figs/` also contains figures not currently used on the page
-  (`teaser`, `sensor-model`, `throw-dist`, `ood`, `heat-*`, `rollout-*`, `filmstrip`) if you
-  ever want to add more sections.
+  (`teaser`, `sensor-model`, `throw-dist`, `ood`, `heat-*`, `rollout-*`, `hardware`,
+  `filmstrip`) if you ever want to add more sections.

@@ -1,11 +1,12 @@
 /* EgoIntercept — project page
-   Layout follows the familiar academic project-page template
-   (Nerfies / Robot Parkour Learning lineage). */
+   Layout adapted from https://mobile-dex-catch.github.io/ and
+   https://nerfies.github.io/ */
 
 :root{
   --fg:#363636;
   --fg-dim:#6b7280;
   --link:#3273dc;
+  --accent:#c64d2c;   /* figure's prediction-reward orange (#d87860), darkened to clear 4.5:1 on white */
   --line:#dbdbdb;
   --soft:#f5f5f5;
 }
@@ -18,6 +19,7 @@ body{
   font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;
 }
 img,video{max-width:100%;display:block}
+img{height:auto}   /* width/height attrs are there to reserve space, not to fix the size */
 a{color:var(--link);text-decoration:none}
 a:hover{text-decoration:underline}
 
@@ -29,9 +31,12 @@ a:hover{text-decoration:underline}
 /* ---------- hero ---------- */
 .hero{padding:52px 0 20px;text-align:center}
 .publication-title{
-  font-size:clamp(1.8rem,4.4vw,2.6rem);font-weight:700;line-height:1.28;
+  font-size:clamp(1.8rem,4.4vw,2.6rem);font-weight:600;line-height:1.28;
   margin:0 0 18px;letter-spacing:-.01em;color:#222;
 }
+/* The project name carries the weight and the accent; the rest of the title
+   drops to 600 so the contrast reads without needing an extra font weight. */
+.publication-title .name{font-weight:700;color:var(--accent)}
 .publication-authors{font-size:1.2rem;margin-bottom:6px}
 .publication-venue{font-size:1.05rem;color:var(--fg-dim);margin-bottom:22px}
 
@@ -51,6 +56,7 @@ section{padding:30px 0}
   font-size:1.7rem;font-weight:700;color:#222;text-align:center;margin:0 0 22px;
 }
 .section-lede{color:var(--fg-dim);text-align:center;max-width:70ch;margin:-12px auto 24px}
+.section-lede b{color:var(--fg);font-weight:600}
 h3{font-size:1.1rem;font-weight:700;margin:26px 0 10px}
 p{margin:0 0 1em}
 hr{border:0;border-top:1px solid var(--line);margin:0}
@@ -70,8 +76,23 @@ figcaption b{color:var(--fg)}
 @media(max-width:900px){.vgrid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.vgrid{grid-template-columns:1fr}}
 .vgrid.one{grid-template-columns:1fr}
+.vgrid.two{grid-template-columns:repeat(2,1fr)}
+@media(max-width:600px){.vgrid.two{grid-template-columns:1fr}}
+/* Stacked grids in one section read as a single run of clips. */
+.vgrid + .vgrid{margin-top:18px}
+/* An odd final clip would sit alone against the left edge; centre it instead,
+   still one column wide (18px gap, so half of it comes off each side). */
+@media(min-width:601px){
+  .vgrid.two > .vitem:last-child:nth-child(odd){
+    grid-column:1 / -1;width:calc(50% - 9px);margin-inline:auto;
+  }
+}
 
-.vitem video,.vitem img.ph{width:100%;border-radius:5px;background:#eee;border:1px solid var(--line)}
+/* Reserve each frame up front. Posters load lazily with the clip, so without a
+   fixed ratio the grid would reflow as you scroll. Catch clips are 1280x720;
+   the onboard triptychs are 1280x320. */
+.vitem video,.vitem img.ph{width:100%;aspect-ratio:16/9;border-radius:5px;background:#eee;border:1px solid var(--line)}
+#grid-onboard .vitem video{aspect-ratio:4/1}
 .vitem .cap{font-size:.9rem;color:var(--fg-dim);margin-top:7px;line-height:1.45;text-align:center}
 .vitem .cap b{color:var(--fg);font-weight:600}
 
@@ -114,4 +135,6 @@ tr.grp th{text-align:left;font-weight:700;color:var(--fg-dim);background:var(--s
 .note{background:var(--soft);border-radius:6px;padding:18px 20px;font-size:.95rem;color:var(--fg-dim)}
 .note b{color:var(--fg)}
 footer{border-top:1px solid var(--line);margin-top:26px;padding:24px 0 46px;font-size:.88rem;color:var(--fg-dim);text-align:center}
+footer p{margin:0 0 .5em}
+footer p:last-child{margin:0}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
