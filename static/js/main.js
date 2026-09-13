@@ -13,12 +13,12 @@
    Shot at 240 fps and retimed to 30 fps, i.e. 0.125x real time.
    Shown one per row, full width. Filenames carry a -slowmo suffix.        */
 const SLOWMO = [
+  { file:"static/vids/catch-back-right-01-slowmo.mp4",  cap:"<b>Left</b> &middot; 0.125&times; real time" },
   { file:"static/vids/catch-forward-01-slowmo.mp4",     cap:"<b>Forward</b> &middot; 0.125&times; real time" },
   { file:"static/vids/catch-front-left-01-slowmo.mp4",  cap:"<b>Front-left</b> &middot; 0.125&times; real time" },
   { file:"static/vids/catch-front-right-01-slowmo.mp4", cap:"<b>Front-right</b> &middot; 0.125&times; real time" },
   { file:"static/vids/catch-back-01-slowmo.mp4",        cap:"<b>Back</b> &middot; 0.125&times; real time" },
   { file:"static/vids/catch-back-02-slowmo.mp4",        cap:"<b>Back</b> &middot; 0.125&times; real time" },
-  { file:"static/vids/catch-back-right-01-slowmo.mp4",  cap:"<b>Left</b> &middot; 0.125&times; real time" },
   { file:"static/vids/catch-near-03-slowmo.mp4",        cap:"<b>Near</b> &middot; 0.125&times; real time" },
 ];
 
