@@ -19,3 +19,7 @@ sim_rollout.mp4
 # Onboard-view captures. Archived under media/vids/onboard/; the site
 # serves the faststart remuxes at static/vids/onboard-view-*.mp4.
 onboard_view*.mp4
+
+# Source render of the architecture figure. Archived at media/; the site
+# serves the flattened WebP at static/img/figs/framework.webp.
+policy_arch.png
