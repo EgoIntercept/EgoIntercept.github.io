@@ -33,14 +33,12 @@ const CATCHES = [
 ];
 
 /* ---- Onboard perception --------------------------------------------------
-   Third-person capture with the robot's onboard camera composited in as an
-   inset; the "Onboard View" label is burned into the clip.
-   The earlier RGB | depth | third-person triptychs are still encoded at
-   static/vids/onboard-01.mp4 ... onboard-05.mp4.                          */
+   Third-person capture with the robot's onboard camera composited in; the
+   "Onboard View" label is burned into the clip, so these carry no caption. */
 const ONBOARD = [
-  { file:"static/vids/onboard-view-01.mp4", cap:"Third-person view &middot; onboard camera inset" },
-  { file:"static/vids/onboard-view-02.mp4", cap:"Third-person view &middot; onboard camera inset" },
-  { file:"static/vids/onboard-view-03.mp4", cap:"Third-person view &middot; onboard camera inset" },
+  { file:"static/vids/onboard-view-01.mp4" },
+  { file:"static/vids/onboard-view-02.mp4" },
+  { file:"static/vids/onboard-view-03.mp4" },
 ];
 
 /* ---- Simulation ----------------------------------------------------------
@@ -70,11 +68,12 @@ function fill(id, list, placeholder) {
     }
     return;
   }
+  /* cap is optional — leave it out and the clip stands on its own. */
   grid.innerHTML = list.map(v => `
     <div class="vitem">
       <video muted loop playsinline controls controlslist="nodownload" preload="none"
              poster="${posterFor(v.file)}" data-src="${v.file}"></video>
-      <div class="cap">${v.cap}</div>
+      ${v.cap ? `<div class="cap">${v.cap}</div>` : ""}
     </div>`).join("");
 }
 
