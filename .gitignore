@@ -15,3 +15,7 @@ IcraSupplement.mov
 # Unlabeled simulation render. The site serves the labeled version at
 # static/vids/sim/; rebuild it with tools/label-sim-rollout.sh.
 sim_rollout.mp4
+
+# Onboard-view captures. Archived under media/vids/onboard/; the site
+# serves the faststart remuxes at static/vids/onboard-view-*.mp4.
+onboard_view*.mp4

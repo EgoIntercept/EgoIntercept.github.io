@@ -32,14 +32,15 @@ const CATCHES = [
   { file:"static/vids/catch-near-02.mp4",        cap:"<b>Near</b>" },
 ];
 
-/* ---- Onboard perception (RGB | depth | third-person) --------------------- */
+/* ---- Onboard perception --------------------------------------------------
+   Third-person capture with the robot's onboard camera composited in as an
+   inset; the "Onboard View" label is burned into the clip.
+   The earlier RGB | depth | third-person triptychs are still encoded at
+   static/vids/onboard-01.mp4 ... onboard-05.mp4.                          */
 const ONBOARD = [
-  { file:"static/vids/onboard-01.mp4", cap:"Onboard RGB &middot; aligned depth &middot; third-person view" },
-  // Also encoded and available:
-  // { file:"static/vids/onboard-02.mp4", cap:"Onboard RGB &middot; aligned depth &middot; third-person view" },
-  // { file:"static/vids/onboard-03.mp4", cap:"Onboard RGB &middot; aligned depth &middot; third-person view" },
-  // { file:"static/vids/onboard-04.mp4", cap:"Onboard RGB &middot; aligned depth &middot; third-person view" },
-  // { file:"static/vids/onboard-05.mp4", cap:"Onboard RGB &middot; aligned depth &middot; third-person view" },
+  { file:"static/vids/onboard-view-01.mp4", cap:"Third-person view &middot; onboard camera inset" },
+  { file:"static/vids/onboard-view-02.mp4", cap:"Third-person view &middot; onboard camera inset" },
+  { file:"static/vids/onboard-view-03.mp4", cap:"Third-person view &middot; onboard camera inset" },
 ];
 
 /* ---- Simulation ----------------------------------------------------------
