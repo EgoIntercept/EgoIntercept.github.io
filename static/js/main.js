@@ -18,7 +18,7 @@ const SLOWMO = [
   { file:"static/vids/catch-front-right-01-slowmo.mp4", cap:"<b>Front-right</b> &middot; 0.125&times; real time" },
   { file:"static/vids/catch-back-01-slowmo.mp4",        cap:"<b>Back</b> &middot; 0.125&times; real time" },
   { file:"static/vids/catch-back-02-slowmo.mp4",        cap:"<b>Back</b> &middot; 0.125&times; real time" },
-  { file:"static/vids/catch-back-right-01-slowmo.mp4",  cap:"<b>Back-right</b> &middot; 0.125&times; real time" },
+  { file:"static/vids/catch-back-right-01-slowmo.mp4",  cap:"<b>Left</b> &middot; 0.125&times; real time" },
   { file:"static/vids/catch-near-03-slowmo.mp4",        cap:"<b>Near</b> &middot; 0.125&times; real time" },
 ];
 
@@ -35,9 +35,9 @@ const CATCHES = [
 /* ---- Onboard perception (RGB | depth | third-person) --------------------- */
 const ONBOARD = [
   { file:"static/vids/onboard-01.mp4", cap:"Onboard RGB &middot; aligned depth &middot; third-person view" },
-  { file:"static/vids/onboard-02.mp4", cap:"Onboard RGB &middot; aligned depth &middot; third-person view" },
-  { file:"static/vids/onboard-03.mp4", cap:"Onboard RGB &middot; aligned depth &middot; third-person view" },
   // Also encoded and available:
+  // { file:"static/vids/onboard-02.mp4", cap:"Onboard RGB &middot; aligned depth &middot; third-person view" },
+  // { file:"static/vids/onboard-03.mp4", cap:"Onboard RGB &middot; aligned depth &middot; third-person view" },
   // { file:"static/vids/onboard-04.mp4", cap:"Onboard RGB &middot; aligned depth &middot; third-person view" },
   // { file:"static/vids/onboard-05.mp4", cap:"Onboard RGB &middot; aligned depth &middot; third-person view" },
 ];
