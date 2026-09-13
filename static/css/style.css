@@ -93,6 +93,8 @@ figcaption b{color:var(--fg)}
    the onboard triptychs are 1280x320. */
 .vitem video,.vitem img.ph{width:100%;aspect-ratio:16/9;border-radius:5px;background:#eee;border:1px solid var(--line)}
 #grid-onboard .vitem video{aspect-ratio:4/1}
+/* Side-by-side onboard + external render. */
+#grid-sim .vitem video{aspect-ratio:8/3}
 .vitem .cap{font-size:.9rem;color:var(--fg-dim);margin-top:7px;line-height:1.45;text-align:center}
 .vitem .cap b{color:var(--fg);font-weight:600}
 

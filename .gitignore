@@ -11,3 +11,7 @@ static/EgoIntercept.pdf
 # Raw supplementary capture (~200 MB). The site serves the 2x re-encode at
 # static/vids/overview-2x.mp4; rebuild it with tools/make-overview.sh.
 IcraSupplement.mov
+
+# Unlabeled simulation render. The site serves the labeled version at
+# static/vids/sim/; rebuild it with tools/label-sim-rollout.sh.
+sim_rollout.mp4

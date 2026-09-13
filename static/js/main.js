@@ -43,9 +43,12 @@ const ONBOARD = [
 ];
 
 /* ---- Simulation ----------------------------------------------------------
-   Put clips in static/vids/sim/ and list them here, e.g.
-     { file:"static/vids/sim/rollout-01.mp4", cap:"Policy rollout" },        */
-const SIMS = [];
+   Put clips in static/vids/sim/ and list them here. Pane labels and the
+   marker legend are burned into the clips by tools/label-sim-rollout.sh.   */
+const SIMS = [
+  { file:"static/vids/sim/sim-rollout-01.mp4",
+    cap:"Policy rollout &middot; onboard camera (left) and external view (right)" },
+];
 
 /* ---- Failure cases -------------------------------------------------------
    Put clips in static/vids/failures/ and list them here, e.g.
