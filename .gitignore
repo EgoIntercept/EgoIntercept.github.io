@@ -8,8 +8,8 @@ media/
 # Paper is not public yet.
 static/EgoIntercept.pdf
 
-# Raw supplementary capture (~200 MB). The site serves the 2x re-encode at
-# static/vids/overview-2x.mp4; rebuild it with tools/make-overview.sh.
+# Raw supplementary capture (~200 MB). Superseded as the headline video by
+# the edited cut now served at static/vids/overview.mp4.
 IcraSupplement.mov
 
 # Unlabeled simulation render. The site serves the labeled version at

@@ -48,16 +48,16 @@
 
 <!-- ======================= OVERVIEW VIDEO ======================= -->
 <!-- No heading by design: this is the first thing on the page.
-     Self-hosted supplementary video, played back at 2x the original speed.
-     Re-encode from the raw capture with tools/make-overview.sh. -->
+     Self-hosted supplementary video. It arrives web-ready (H.264/AAC,
+     faststart) and carries its own speed badges, so it is served as-is. -->
 <section id="video" style="padding-top:14px">
   <div class="container">
     <div class="yt">
       <video id="overview" controls playsinline preload="none"
-             poster="static/img/posters/overview-2x.jpg"
-             src="static/vids/overview-2x.mp4"></video>
+             poster="static/img/posters/overview.jpg"
+             src="static/vids/overview.mp4"></video>
     </div>
-    <p class="section-lede vid-note">Supplementary video &middot; played at <b>2&times;</b> the recorded speed.</p>
+    <p class="section-lede vid-note">Overview video</p>
   </div>
 </section>
 
@@ -91,7 +91,7 @@
     <figure>
       <img src="static/img/figs/framework.webp" alt="EgoIntercept framework during training and deployment."
            width="1900" height="932" loading="lazy" decoding="async">
-      <figcaption><b>EgoIntercept framework during training and deployment.</b> <b>Top:</b> During training, ground-truth object states pass through a calibrated sensor model (FOV limits, latency, detection error, depth noise) to produce realistic egocentric observations. A predictor network regresses object position, velocity, and time-to-crossing from these observations. The predictor&rsquo;s output is detached then concatenated with the observation history and given to the actor, and the prediction error defines a dense prediction reward to accelerate learning. <b>Bottom:</b> During deployment, the calibrated sensor model is replaced by the real object detection pipeline, while the predictor and policy run unchanged, enabling zero-shot transfer.</figcaption>
+      <figcaption><b>EgoIntercept framework during training and deployment.</b> <b>Top:</b> During training, ground-truth object states pass through a calibrated sensor model (FOV limits, latency, detection error, depth noise) to produce realistic egocentric observations. A predictor network regresses object position, velocity, and time-to-catch from these observations. The predictor&rsquo;s output is detached then concatenated with the observation history and given to the actor, and the prediction error defines a dense prediction reward to accelerate learning. <b>Bottom:</b> During deployment, the calibrated sensor model is replaced by the real object detection pipeline, while the predictor and policy run unchanged, enabling zero-shot transfer.</figcaption>
     </figure>
   </div>
 </section>
