@@ -49,10 +49,12 @@ const SIMS = [
     cap:"Policy rollout &middot; onboard camera (left) and external view (right)" },
 ];
 
-/* ---- Failure cases -------------------------------------------------------
-   Put clips in static/vids/failures/ and list them here, e.g.
-     { file:"static/vids/failures/fov-edge.mp4", cap:"Ball exits field of view" }, */
-const FAILURES = [];
+/* ---- Emergent framing ----------------------------------------------------
+   Two-pane captures, onboard left and external right, with the pane labels
+   burned in by tools/label-two-pane.sh.                                    */
+const EMERGENT = [
+  { file:"static/vids/emergent-framing-01.mp4" },
+];
 
 /* ========================================================================== */
 
@@ -135,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
   fill("grid-catches",  CATCHES);
   fill("grid-onboard",  ONBOARD);
   fill("grid-sim",      SIMS,     "Simulation rollouts");
-  fill("grid-failures", FAILURES, "Failure cases");
+  fill("grid-emergent", EMERGENT);
   lazyPlay();
   initCopy();
 });

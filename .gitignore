@@ -23,3 +23,7 @@ onboard_view*.mp4
 # Source render of the architecture figure. Archived at media/; the site
 # serves the flattened WebP at static/img/figs/framework.webp.
 policy_arch.png
+
+# Three-pane fpv|depth|external capture. Archived under media/vids/emergent/;
+# the site serves the two-pane crop at static/vids/emergent-framing-01.mp4.
+F_catch2_fpv_depth_external*.mp4
